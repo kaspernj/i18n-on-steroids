@@ -2,7 +2,7 @@ const {digg} = require("@kaspernj/object-digger")
 const numberable = require("numberable")
 const strftime = require("strftime")
 
-module.exports = class ApiMakerI18n {
+module.exports = class I18nOnSteroids {
   constructor() {
     this.locales = {}
   }
