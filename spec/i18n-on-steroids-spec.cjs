@@ -19,6 +19,12 @@ describe("I18nOnSteroids", () => {
   })
 
   it("it raises an error when the translation couldnt be found", () => {
-    expect(() => { i18n.t("non_existent_key") }).toThrowError("Path didn't exist: da.non_existent_key")
+    expect(() => { i18n.t("non_existent_key") }).toThrowError("Key didn't exist: da.non_existent_key")
+  })
+
+  it("accepts a default value", () => {
+    const helloWorld = i18n.t("hello_world_that_doesnt_exist", {defaultValue: "Hallo Welt"})
+
+    expect(helloWorld).toEqual("Hallo Welt")
   })
 })

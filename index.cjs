@@ -1,4 +1,4 @@
-const {digg} = require("@kaspernj/object-digger")
+const {dig, digg} = require("@kaspernj/object-digger")
 const numberable = require("numberable")
 const strftime = require("strftime")
 
@@ -70,7 +70,21 @@ module.exports = class I18nOnSteroids {
   t(key, variables) {
     const path = key.split(".")
 
-    let value = digg(this.locales, this.locale, ...path)
+    let defaultValue
+    let value = dig(this.locales, this.locale, ...path)
+
+    if (variables && "defaultValue" in variables) {
+      defaultValue = digg(variables, "defaultValue")
+      delete variables.defaultValue
+    }
+
+    if (value === undefined) {
+      if (defaultValue) {
+        return defaultValue
+      }
+
+      throw new Error(`Key didn't exist: ${this.locale}.${key}`)
+    }
 
     if (variables) {
       for (const key in variables) {
