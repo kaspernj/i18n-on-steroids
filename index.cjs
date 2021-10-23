@@ -1,4 +1,4 @@
-const {dig, digg} = require("@kaspernj/object-digger")
+const {dig, digg} = require("diggerize")
 const numberable = require("numberable")
 const strftime = require("strftime")
 
