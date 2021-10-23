@@ -23,7 +23,7 @@
     "jasmine": "^3.6.4"
   },
   "dependencies": {
-    "@kaspernj/object-digger": "^1.0.2",
+    "diggerize": "^1.0.3",
     "numberable": "^1.0.0",
     "strftime": "^0.10.0"
   }
