@@ -1,4 +1,5 @@
-const I18nOnSteroids = require("../index.cjs")
+import I18nOnSteroids from "../index.mjs"
+
 const i18n = new I18nOnSteroids()
 
 i18n.scanObject({

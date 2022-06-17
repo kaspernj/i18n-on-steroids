@@ -1,8 +1,9 @@
 {
   "name": "i18n-on-steroids",
   "version": "1.0.2",
+  "type": "module",
   "description": "",
-  "main": "index.cjs",
+  "main": "index.mjs",
   "scripts": {
     "test": "jasmine"
   },
@@ -23,7 +24,7 @@
     "jasmine": "^3.6.4"
   },
   "dependencies": {
-    "diggerize": "^1.0.3",
+    "diggerize": "^1.0.5",
     "numberable": "^1.0.0",
     "strftime": "^0.10.0"
   }
