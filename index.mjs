@@ -1,8 +1,8 @@
-const {dig, digg} = require("diggerize")
-const numberable = require("numberable")
-const strftime = require("strftime")
+import {dig, digg} from "diggerize"
+import numberable from "numberable"
+import strftime from "strftime"
 
-module.exports = class I18nOnSteroids {
+export default class I18nOnSteroids {
   constructor() {
     this.locales = {}
   }
