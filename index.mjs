@@ -1,10 +1,16 @@
 import {dig, digg} from "diggerize"
 import numberable from "numberable"
+import Raiser from "./src/error-handlers/raiser.mjs"
 import strftime from "strftime"
 
 export default class I18nOnSteroids {
   constructor() {
+    this.errorHandler = new Raiser(this)
     this.locales = {}
+  }
+
+  setErrorHandler(errorHandler) {
+    this.errorHandler = errorHandler
   }
 
   setLocale(locale) {
@@ -83,7 +89,9 @@ export default class I18nOnSteroids {
         return defaultValue
       }
 
-      throw new Error(`Key didn't exist: ${this.locale}.${key}`)
+      const error = Error(`Key didn't exist: ${this.locale}.${key}`)
+
+      return this.errorHandler.handleError({error, key, path, variables})
     }
 
     if (variables) {
