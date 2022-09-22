@@ -86,12 +86,12 @@ export default class I18nOnSteroids {
 
     if (value === undefined) {
       if (defaultValue) {
-        return defaultValue
+        value = defaultValue
+      } else {
+        const error = Error(`Key didn't exist: ${this.locale}.${key}`)
+
+        return this.errorHandler.handleError({error, key, path, variables})
       }
-
-      const error = Error(`Key didn't exist: ${this.locale}.${key}`)
-
-      return this.errorHandler.handleError({error, key, path, variables})
     }
 
     if (variables) {

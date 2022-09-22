@@ -43,8 +43,8 @@ describe("I18nOnSteroids", () => {
   })
 
   it("accepts a default value", () => {
-    const helloWorld = i18n.t("hello_world_that_doesnt_exist", {defaultValue: "Hallo Welt"})
+    const helloWorld = i18n.t("hello_world_that_doesnt_exist", {defaultValue: "Hallo Welt %{number}", number: 5})
 
-    expect(helloWorld).toEqual("Hallo Welt")
+    expect(helloWorld).toEqual("Hallo Welt 5")
   })
 })
