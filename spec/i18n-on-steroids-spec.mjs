@@ -47,4 +47,24 @@ describe("I18nOnSteroids", () => {
 
     expect(helloWorld).toEqual("Hallo Welt 5")
   })
+
+  it("falls back", () => {
+    const i18n = new I18nOnSteroids({
+      fallbacks: {
+        da: ["da", "en"]
+      }
+    })
+
+    i18n.scanObject({
+      da: {},
+      en: {
+        hello_world: "Hello world"
+      }
+    })
+    i18n.setLocale("da")
+
+    const helloWorld = i18n.t("hello_world")
+
+    expect(helloWorld).toEqual("Hello world")
+  })
 })
