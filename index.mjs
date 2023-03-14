@@ -4,9 +4,15 @@ import Raiser from "./src/error-handlers/raiser.mjs"
 import strftime from "strftime"
 
 export default class I18nOnSteroids {
-  constructor() {
+  constructor(args) {
     this.errorHandler = new Raiser(this)
     this.locales = {}
+
+    if (args?.fallbacks) {
+      this.fallbacks = args.fallbacks
+    } else {
+      this.fallbacks = {}
+    }
   }
 
   setErrorHandler(errorHandler) {
@@ -75,9 +81,23 @@ export default class I18nOnSteroids {
 
   t(key, variables) {
     const path = key.split(".")
+    const localesToTry = this.fallbacks[this.locale] || [this.locale]
 
+    for (const locale of localesToTry) {
+      const value = this._lookup(path, locale, variables)
+
+      if (value) return value
+    }
+
+
+    const error = Error(`Key didn't exist: ${this.locale}.${key}`)
+
+    return this.errorHandler.handleError({error, key, path, variables})
+  }
+
+  _lookup(path, locale, variables) {
     let defaultValue
-    let value = dig(this.locales, this.locale, ...path)
+    let value = dig(this.locales, locale, ...path)
 
     if (variables && "defaultValue" in variables) {
       defaultValue = digg(variables, "defaultValue")
@@ -85,13 +105,10 @@ export default class I18nOnSteroids {
     }
 
     if (value === undefined) {
-      if (defaultValue) {
-        value = defaultValue
-      } else {
-        const error = Error(`Key didn't exist: ${this.locale}.${key}`)
+      // Translation not found - try next locale
+      if (!defaultValue) return
 
-        return this.errorHandler.handleError({error, key, path, variables})
-      }
+      value = defaultValue
     }
 
     if (variables) {
