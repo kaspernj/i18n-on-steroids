@@ -11,9 +11,12 @@ i18n.scanObject({
     hello_world: "Hello world"
   }
 })
-i18n.setLocale("da")
 
 describe("I18nOnSteroids", () => {
+  beforeEach(() => {
+    i18n.setLocale("da")
+  })
+
   it("translates from the loaded files", () => {
     const helloWorld = i18n.t("hello_world")
 
@@ -66,5 +69,14 @@ describe("I18nOnSteroids", () => {
     const helloWorld = i18n.t("hello_world")
 
     expect(helloWorld).toEqual("Hello world")
+  })
+
+  it("supports 'default'-argument", () => {
+    expect(i18n.t("doesnt_exist", null, {default: "Hello there"})).toEqual("Hello there")
+  })
+
+  it("supports 'locale'-argument", () => {
+    expect(i18n.t("hello_world")).toEqual("Hej verden")
+    expect(i18n.t("hello_world", null, {locale: "en"})).toEqual("Hello world")
   })
 })
