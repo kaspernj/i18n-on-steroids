@@ -67,4 +67,15 @@ describe("I18nOnSteroids", () => {
 
     expect(helloWorld).toEqual("Hello world")
   })
+
+  it("supports 'default'-argument", () => {
+    expect(i18n.t("doesnt_exist", null, {default: "Hello there"})).toEqual("Hello there")
+  })
+
+  it("supports 'locale'-argument", () => {
+    i18n.setLocale("en")
+
+    expect(i18n.t("hello_world")).toEqual("Hello world")
+    expect(i18n.t("hello_world", null, {locale: "da"})).toEqual("Hej verden")
+  })
 })

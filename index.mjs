@@ -79,9 +79,10 @@ export default class I18nOnSteroids {
     return formattedDate
   }
 
-  t(key, variables) {
+  t(key, variables, args) {
+    const locale = args?.locale || this.locale
     const path = key.split(".")
-    const localesToTry = this.fallbacks[this.locale] || [this.locale]
+    const localesToTry = this.fallbacks[locale] || [locale]
 
     for (const locale of localesToTry) {
       const value = this._lookup(path, locale, variables)
@@ -89,8 +90,9 @@ export default class I18nOnSteroids {
       if (value) return value
     }
 
+    if (args?.default) return args.default
 
-    const error = Error(`Key didn't exist: ${this.locale}.${key}`)
+    const error = Error(`Key didn't exist: ${locale}.${key}`)
 
     return this.errorHandler.handleError({error, key, path, variables})
   }
