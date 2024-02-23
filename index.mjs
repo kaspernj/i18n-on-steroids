@@ -1,3 +1,4 @@
+import events from "./src/events.mjs"
 import {dig, digg} from "diggerize"
 import numberable from "numberable"
 import Raiser from "./src/error-handlers/raiser.mjs"
@@ -21,6 +22,7 @@ export default class I18nOnSteroids {
 
   setLocale(locale) {
     this.locale = locale
+    events.emit("localeChanged")
   }
 
   setLocaleOnStrftime() {
