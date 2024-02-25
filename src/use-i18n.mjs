@@ -1,5 +1,5 @@
 import useLocale from "./use-locale.mjs"
-import useShape from "set-state-compare/src/use-callback.js"
+import useShape from "set-state-compare/src/use-shape.js"
 
 const useI18n = ({namespace}) => {
   const s = useShape({namespace})
@@ -14,7 +14,7 @@ const useI18n = ({namespace}) => {
   }, [])
 
   return {
-    locale: s.s.locale,
+    locale,
     t
   }
 }
