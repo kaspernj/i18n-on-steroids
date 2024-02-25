@@ -10,7 +10,11 @@ const useI18n = ({namespace}) => {
   const t = useCallback((key, variables, args = {}) => {
     const newArgs = Object.assign({locale: s.m.locale}, args)
 
-    return I18n.t(`${s.p.namespace}.${key}`, variables, newArgs)
+    if (key.startsWith(".")) {
+      key = `${s.p.namespace}${key}`
+    }
+
+    return I18n.t(key, variables, newArgs)
   }, [])
 
   return {
