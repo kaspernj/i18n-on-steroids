@@ -1,5 +1,5 @@
 import events from "./events.mjs"
-import {useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 
 const useLocale = () => {
   const [locale, setLocale] = useState(I18n.locale)
