@@ -1,6 +1,6 @@
 {
   "name": "i18n-on-steroids",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "description": "",
   "main": "index.mjs",
