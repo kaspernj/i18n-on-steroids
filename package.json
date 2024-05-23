@@ -26,7 +26,6 @@
   "dependencies": {
     "diggerize": "^1.0.5",
     "numberable": "^1.0.0",
-    "set-state-compare": "^1.0.26",
     "strftime": "^0.10.0"
   }
 }
