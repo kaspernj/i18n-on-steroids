@@ -1,4 +1,4 @@
-import {useCallback} from "react"
+import {useCallback, useMemo} from "react"
 import useLocale from "./use-locale.mjs"
 
 const useI18n = ({namespace}) => {
