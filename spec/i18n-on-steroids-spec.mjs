@@ -71,6 +71,26 @@ describe("I18nOnSteroids", () => {
     expect(helloWorld).toEqual("Hello world")
   })
 
+  it("falls back with a defaultValue", () => {
+    const i18n = new I18nOnSteroids({
+      fallbacks: {
+        da: ["da", "en"]
+      }
+    })
+
+    i18n.scanObject({
+      da: {},
+      en: {
+        hello_world: "Hello world"
+      }
+    })
+    i18n.setLocale("da")
+
+    const helloWorld = i18n.t("hello_world", {defaultValue: "Hallo Welt"})
+
+    expect(helloWorld).toEqual("Hello world")
+  })
+
   it("supports 'default'-argument", () => {
     expect(i18n.t("doesnt_exist", null, {default: "Hello there"})).toEqual("Hello there")
   })
