@@ -85,23 +85,15 @@ export default class I18nOnSteroids {
     const locale = args?.locale || this.locale
     const path = key.split(".")
     const localesToTry = this.fallbacks[locale] || [locale]
+    let defaultValue, value
 
     for (const locale of localesToTry) {
-      const value = this._lookup(path, locale, variables)
+      value = this._lookup(locale, path)
 
-      if (value) return value
+      if (value) {
+        break
+      }
     }
-
-    if (args?.default) return args.default
-
-    const error = Error(`Key didn't exist: ${locale}.${key}`)
-
-    return this.errorHandler.handleError({error, key, path, variables})
-  }
-
-  _lookup(path, locale, variables) {
-    let defaultValue
-    let value = dig(this.locales, locale, ...path)
 
     if (variables && "defaultValue" in variables) {
       defaultValue = digg(variables, "defaultValue")
@@ -109,12 +101,23 @@ export default class I18nOnSteroids {
     }
 
     if (value === undefined) {
-      // Translation not found - try next locale
-      if (!defaultValue) return
-
-      value = defaultValue
+      if (args?.default) {
+        value = args.default
+      } else if (defaultValue) {
+        value = defaultValue
+      }
     }
 
+    if (value) {
+      return this.insertVariables(value, variables)
+    }
+
+    const error = Error(`Key didn't exist: ${locale}.${key}`)
+
+    return this.errorHandler.handleError({error, key, path, variables})
+  }
+
+  insertVariables(value, variables) {
     if (variables) {
       for (const key in variables) {
         value = value.replace(`%{${key}}`, variables[key])
@@ -123,6 +126,8 @@ export default class I18nOnSteroids {
 
     return value
   }
+
+  _lookup = (locale, path) => dig(this.locales, locale, ...path)
 
   toNumber(number) {
     return numberable(number, {
