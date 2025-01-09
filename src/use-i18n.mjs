@@ -10,7 +10,7 @@ const useI18n = ({namespace}) => {
   shared.namespace = namespace
 
   const l = useCallback((format, date, args = {}) => {
-    const newArgs = Object.assign({locale: s.m.locale}, args)
+    const newArgs = Object.assign({locale: shared.locale}, args)
 
     return I18nOnSteroids.getCurrent().l(format, date, newArgs)
   }, [])
