@@ -4,7 +4,21 @@ import numberable from "numberable"
 import Raiser from "./src/error-handlers/raiser.mjs"
 import strftime from "strftime"
 
+const shared = {
+  current: null
+}
+
 export default class I18nOnSteroids {
+  static getCurrent() {
+    if (!shared.current) throw new Error("A current instance hasn't been set")
+
+    return shared.current
+  }
+
+  static setCurrent(i18n) {
+    shared.current = i18n
+  }
+
   constructor(args) {
     this.errorHandler = new Raiser(this)
     this.locales = {}
