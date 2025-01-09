@@ -1,13 +1,13 @@
 import I18nOnSteroids from "../index.mjs"
-import {useCallback} from "react"
+import {useCallback, useMemo} from "react"
 import useLocale from "./use-locale.mjs"
-import useShape from "set-state-compare/src/use-shape.js"
 
 const useI18n = ({namespace}) => {
-  const s = useShape({namespace})
+  const shared = useMemo(() => ({}), [])
   const locale = useLocale()
 
-  s.updateMeta({locale})
+  shared.locale = locale
+  shared.namespace = namespace
 
   const l = useCallback((format, date, args = {}) => {
     const newArgs = Object.assign({locale: s.m.locale}, args)
@@ -16,10 +16,10 @@ const useI18n = ({namespace}) => {
   }, [])
 
   const t = useCallback((key, variables, args = {}) => {
-    const newArgs = Object.assign({locale: s.m.locale}, args)
+    const newArgs = Object.assign({locale: shared.locale}, args)
 
     if (key.startsWith(".")) {
-      key = `${s.p.namespace}${key}`
+      key = `${shared.namespace}${key}`
     }
 
     return I18nOnSteroids.getCurrent().t(key, variables, newArgs)
