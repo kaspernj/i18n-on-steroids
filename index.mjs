@@ -4,19 +4,17 @@ import numberable from "numberable"
 import Raiser from "./src/error-handlers/raiser.mjs"
 import strftime from "strftime"
 
-const shared = {
-  current: null
-}
+if (!global.i18nOnSteroids) global.i18nOnSteroids = {current: null}
 
 export default class I18nOnSteroids {
   static getCurrent() {
-    if (!shared.current) throw new Error("A current instance hasn't been set")
+    if (!global.i18nOnSteroids.current) throw new Error("A current instance hasn't been set")
 
-    return shared.current
+    return global.i18nOnSteroids.current
   }
 
   static setCurrent(i18n) {
-    shared.current = i18n
+    global.i18nOnSteroids.current = i18n
   }
 
   constructor(args) {
