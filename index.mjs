@@ -4,17 +4,17 @@ import numberable from "numberable"
 import Raiser from "./src/error-handlers/raiser.mjs"
 import strftime from "strftime"
 
-if (!global.i18nOnSteroids) global.i18nOnSteroids = {current: null}
+if (!globalThis.i18nOnSteroids) globalThis.i18nOnSteroids = {current: null}
 
 export default class I18nOnSteroids {
   static getCurrent() {
-    if (!global.i18nOnSteroids.current) throw new Error("A current instance hasn't been set")
+    if (!globalThis.i18nOnSteroids.current) throw new Error("A current instance hasn't been set")
 
-    return global.i18nOnSteroids.current
+    return globalThis.i18nOnSteroids.current
   }
 
   static setCurrent(i18n) {
-    global.i18nOnSteroids.current = i18n
+    globalThis.i18nOnSteroids.current = i18n
   }
 
   constructor(args) {
