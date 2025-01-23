@@ -15,6 +15,8 @@ const useI18n = ({namespace}) => {
     return I18nOnSteroids.getCurrent().l(format, date, newArgs)
   }, [])
 
+  const strftime = useCallback((format, date) => I18nOnSteroids.getCurrent().strftime(format, date), [])
+
   const t = useCallback((key, variables, args = {}) => {
     const newArgs = Object.assign({locale: shared.locale}, args)
 
@@ -28,6 +30,7 @@ const useI18n = ({namespace}) => {
   return {
     l,
     locale,
+    strftime,
     t
   }
 }
