@@ -1,5 +1,6 @@
 import events from "./src/events.js"
 import {dig, digg} from "diggerize/build/index.js"
+// @ts-expect-error `numberable` does not ship TypeScript declarations.
 import numberable from "numberable"
 import Raiser from "./src/error-handlers/raiser.js"
 import strftime from "strftime"
@@ -18,9 +19,20 @@ import strftime from "strftime"
 /**
  * @typedef {{current: I18nOnSteroids | null}} GlobalI18nOnSteroids
  */
+/**
+ * @typedef {object} NumberableArgs
+ * @property {string} delimiter
+ * @property {number | string} precision
+ * @property {string} separator
+ */
+/**
+ * @typedef {(number: number, args: NumberableArgs) => string} NumberableFn
+ */
 
 /** @type {typeof globalThis & {i18nOnSteroids?: GlobalI18nOnSteroids}} */
 const globalObject = globalThis
+/** @type {NumberableFn} */
+const typedNumberable = numberable
 
 if (!globalObject.i18nOnSteroids) globalObject.i18nOnSteroids = {current: null}
 
@@ -209,10 +221,13 @@ export default class I18nOnSteroids {
    * @returns {string}
    */
   toNumber(number) {
-    return numberable(number, {
+    /** @type {NumberableArgs} */
+    const numberableArgs = {
       delimiter: this.t("number.format.delimiter"),
       precision: this.t("number.format.precision"),
       separator: this.t("number.format.separator")
-    })
+    }
+
+    return typedNumberable(number, numberableArgs)
   }
 }

@@ -12,5 +12,5 @@
     "moduleResolution": "nodenext",
     "module": "nodenext"
   },
-  "include": ["index.js", "src/**/*.js", "types/**/*"]
+  "include": ["index.js", "src/**/*.js"]
 }
