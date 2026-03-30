@@ -10,14 +10,8 @@
   ],
   "exports": {
     ".": "./build/index.js",
-    "./src/*.js": "./build/src/*.js",
-    "./src/**/*.js": "./build/src/**/*.js",
-    "./*.js": "./build/src/*.js",
-    "./**/*.js": "./build/src/**/*.js",
-    "./src/*.mjs": "./build/src/*.js",
-    "./src/**/*.mjs": "./build/src/**/*.js",
-    "./*.mjs": "./build/src/*.js",
-    "./**/*.mjs": "./build/src/**/*.js"
+    "./src/*": "./build/src/*",
+    "./*": "./build/src/*"
   },
   "scripts": {
     "build": "rm -rf build && tsc",
