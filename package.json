@@ -1,6 +1,6 @@
 {
   "name": "i18n-on-steroids",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "type": "module",
   "description": "",
   "main": "build/index.js",
@@ -10,14 +10,22 @@
   ],
   "exports": {
     ".": "./build/index.js",
+    "./src/error-handlers/raise-in-background.js": "./build/src/error-handlers/raise-in-background.js",
+    "./src/error-handlers/raiser.js": "./build/src/error-handlers/raiser.js",
     "./src/events.js": "./build/src/events.js",
     "./src/use-i18n.js": "./build/src/use-i18n.js",
     "./src/use-locale.js": "./build/src/use-locale.js",
+    "./error-handlers/raise-in-background.js": "./build/src/error-handlers/raise-in-background.js",
+    "./error-handlers/raiser.js": "./build/src/error-handlers/raiser.js",
     "./use-i18n.js": "./build/src/use-i18n.js",
     "./use-locale.js": "./build/src/use-locale.js",
+    "./src/error-handlers/raise-in-background.mjs": "./build/src/error-handlers/raise-in-background.js",
+    "./src/error-handlers/raiser.mjs": "./build/src/error-handlers/raiser.js",
     "./src/events.mjs": "./build/src/events.js",
     "./src/use-i18n.mjs": "./build/src/use-i18n.js",
     "./src/use-locale.mjs": "./build/src/use-locale.js",
+    "./error-handlers/raise-in-background.mjs": "./build/src/error-handlers/raise-in-background.js",
+    "./error-handlers/raiser.mjs": "./build/src/error-handlers/raiser.js",
     "./use-i18n.mjs": "./build/src/use-i18n.js",
     "./use-locale.mjs": "./build/src/use-locale.js"
   },
@@ -46,7 +54,7 @@
     "@types/node": "^24.5.2",
     "@types/react": "^19.2.14",
     "@types/strftime": "^0.9.8",
-    "jasmine": "^5.0.0",
+    "jasmine": "^6.0.0",
     "typescript": "^6.0.2"
   },
   "dependencies": {

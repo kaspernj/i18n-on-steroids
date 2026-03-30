@@ -9,6 +9,7 @@ import useLocale from "./use-locale.js"
  * @returns {{
  *   l: (format: string, date: Date, args?: object) => string,
  *   locale: string,
+ *   strftime: (format: string, date: Date) => string,
  *   t: (key: string, variables?: object, args?: object) => string
  * }}
  */
@@ -21,6 +22,9 @@ const useI18n = ({namespace}) => {
 
     return I18nOnSteroids.getCurrent().l(format, date, newArgs)
   }, [locale])
+
+  /** @type {(format: string, date: Date) => string} */
+  const strftime = useCallback((format, date) => I18nOnSteroids.getCurrent().strftime(format, date), [])
 
   /** @type {(key: string, variables?: Record<string, any>, args?: {default?: string, locale?: string}) => string} */
   const t = useCallback((key, variables, args = {}) => {
@@ -37,6 +41,7 @@ const useI18n = ({namespace}) => {
   return {
     l,
     locale,
+    strftime,
     t
   }
 }
