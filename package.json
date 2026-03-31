@@ -1,9 +1,10 @@
 {
   "name": "i18n-on-steroids",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "type": "module",
   "description": "",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "files": [
     "build/**"
   ],
@@ -12,7 +13,13 @@
     "./build/*": "./build/*"
   },
   "scripts": {
-    "test": "jasmine"
+    "build": "rm -rf build && tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "test": "jasmine",
+    "release:patch": "node scripts/release-patch.js",
+    "typecheck": "tsc --noEmit",
+    "watch": "tsc -w"
   },
   "repository": {
     "type": "git",
@@ -28,11 +35,18 @@
   },
   "homepage": "https://github.com/kaspernj/i18n-on-steroids#readme",
   "devDependencies": {
-    "jasmine": "^5.0.0"
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.2.14",
+    "@types/strftime": "^0.9.8",
+    "jasmine": "^6.0.0",
+    "typescript": "^6.0.2"
   },
   "dependencies": {
-    "diggerize": "^1.0.5",
+    "diggerize": "^1.0.10",
     "numberable": "^1.0.0",
     "strftime": "^0.10.0"
+  },
+  "peerDependencies": {
+    "react": "*"
   }
 }

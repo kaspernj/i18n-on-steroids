@@ -1,5 +1,5 @@
-import I18nOnSteroids from "../index.mjs"
-import RaiseInBackground from "../src/error-handlers/raise-in-background.mjs"
+import I18nOnSteroids from "../index.js"
+import RaiseInBackground from "../src/error-handlers/raise-in-background.js"
 
 const i18n = new I18nOnSteroids()
 
