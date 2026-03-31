@@ -1,6 +1,6 @@
 {
   "name": "i18n-on-steroids",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "type": "module",
   "description": "",
   "main": "build/index.js",
