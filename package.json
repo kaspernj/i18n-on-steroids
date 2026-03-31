@@ -9,8 +9,7 @@
   ],
   "exports": {
     ".": "./build/index.js",
-    "./build/*": "./build/*",
-    "./src/*": "./build/src/*"
+    "./build/*": "./build/*"
   },
   "scripts": {
     "test": "jasmine"
