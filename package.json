@@ -10,8 +10,7 @@
   ],
   "exports": {
     ".": "./build/index.js",
-    "./src/*": "./build/src/*",
-    "./*": "./build/src/*"
+    "./build/*": "./build/*"
   },
   "scripts": {
     "build": "rm -rf build && tsc",
