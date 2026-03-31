@@ -6,6 +6,19 @@ import strftime from "strftime"
 
 if (!globalThis.i18nOnSteroids) globalThis.i18nOnSteroids = {current: null}
 
+/**
+ * @typedef {object} TranslationErrorArgs
+ * @property {Error} error
+ * @property {string} key
+ * @property {string[]} path
+ * @property {Record<string, any> | undefined} variables
+ */
+
+/**
+ * @typedef {object} ErrorHandlerLike
+ * @property {(args: TranslationErrorArgs) => any} handleError
+ */
+
 export default class I18nOnSteroids {
   static getCurrent() {
     if (!globalThis.i18nOnSteroids.current) throw new Error("A current instance hasn't been set")
@@ -18,6 +31,7 @@ export default class I18nOnSteroids {
   }
 
   constructor(args) {
+    /** @type {ErrorHandlerLike} */
     this.errorHandler = new Raiser(this)
     this.locales = {}
 
@@ -28,6 +42,9 @@ export default class I18nOnSteroids {
     }
   }
 
+  /**
+   * @param {ErrorHandlerLike} errorHandler
+   */
   setErrorHandler(errorHandler) {
     this.errorHandler = errorHandler
   }

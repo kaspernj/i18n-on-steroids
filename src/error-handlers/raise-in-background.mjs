@@ -4,6 +4,9 @@ export default class ErrorHandlersRaiseInBackground {
     this.i18n = i18n
   }
 
+  /**
+   * @param {{error: Error, key: string, path: string[], variables: Record<string, any> | undefined}} args
+   */
   handleError({error, path}) {
     setTimeout(
       () => {

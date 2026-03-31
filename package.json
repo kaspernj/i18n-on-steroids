@@ -3,7 +3,15 @@
   "version": "1.0.21",
   "type": "module",
   "description": "",
-  "main": "index.mjs",
+  "main": "build/index.js",
+  "files": [
+    "build/**"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./build/*": "./build/*",
+    "./src/*": "./build/src/*"
+  },
   "scripts": {
     "test": "jasmine"
   },
