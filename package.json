@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/kaspernj/i18n-on-steroids#readme",
   "devDependencies": {
-    "@types/node": "^24.5.2",
+    "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/strftime": "^0.9.8",
     "jasmine": "^6.0.0",
