@@ -38,7 +38,7 @@
     "@types/node": "^26.0.0",
     "@types/react": "^19.2.14",
     "@types/strftime": "^0.9.8",
-    "jasmine": "^6.0.0",
+    "jasmine": "^7.0.0",
     "release-patch": "^1.0.0",
     "typescript": "^6.0.2"
   },
