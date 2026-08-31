@@ -40,7 +40,7 @@
     "@types/strftime": "^0.9.8",
     "jasmine": "^7.0.0",
     "release-patch": "^1.0.0",
-    "typescript": "^6.0.2"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "diggerize": "^1.0.10",
