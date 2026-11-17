@@ -1,3 +1,9 @@
+paths:
+  - "**/*"
+  - "!**/*.md"
+  - "!**/.github/**"
+  - "!**/docs/**"
+
 before_script:
   - npm install
 script:
